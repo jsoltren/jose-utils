@@ -8,9 +8,9 @@ export SPARK_PREPEND_CLASSES=true
 ./bin/spark-shell \
   --master local-cluster[4,4,1024] \
   --conf spark.blacklist.enabled=TRUE \
-  --conf spark.blacklist.timeout=10000 \
+  --conf spark.blacklist.timeout=1000000 \
   --conf spark.blacklist.application.maxFailedTasksPerExecutor=1 \
-  --conf spark.blacklist.application.maxFailedExecutorsPerNode=2 \
+  --conf spark.blacklist.application.maxFailedExecutorsPerNode=3 \
   --conf spark.blacklist.stage.maxFailedTasksPerExecutor=3 \
   --conf spark.blacklist.stage.maxFailedExecutorsPerNode=3 \
   --conf spark.blacklist.task.maxTaskAttemptsPerExecutor=3 \
@@ -21,5 +21,11 @@ export SPARK_PREPEND_CLASSES=true
   --conf spark.eventLog.overwrite=TRUE \
   --conf spark.eventLog.dir=/Users/jose/logs \
   -i ~/dev/jose-utils/blacklist/test-blacklist.scala
+
+# Options.
+# Test executor and not node blacklisting.
+#  --conf spark.blacklist.application.maxFailedExecutorsPerNode=3 \
+# Test node blacklisting.
+#  --conf spark.blacklist.application.maxFailedExecutorsPerNode=2 \
 
 
